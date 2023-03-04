@@ -4,7 +4,7 @@ services:
     command: 'node && app.js'
     ports:
       - 8080:8080
-    working_dir: /test_docker
-    
+    working_dir: /test_docker/dist
+
   redis:
     image: redis:latest

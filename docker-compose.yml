@@ -1,0 +1,10 @@
+services:
+  test_docker:
+    image: node:18-alpine
+    command: 'node && app.js'
+    ports:
+      - 8080:8080
+    working_dir: /test_docker
+    
+  redis:
+    image: redis:latest

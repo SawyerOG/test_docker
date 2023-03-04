@@ -1,6 +1,6 @@
 FROM node:18-alpine
-WORKDIR /dist
+WORKDIR /test_docker
 COPY . .
 RUN yarn install --production
-CMD ["node", "app.js"]
+CMD ["node", "dist/app.js"]
 EXPOSE 8080

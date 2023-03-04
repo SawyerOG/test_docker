@@ -9,6 +9,7 @@ const fs_1 = require("fs");
 const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
 const port = 8080;
+const redis_1 = __importDefault(require("./config/redis"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({ origin: ['127.0.0.1'] }));
 // log only 4xx and 5xx responses to console
@@ -40,7 +41,11 @@ app.get('/', function (req, res, next) {
     res.status(code).send('hello, world!');
 });
 app.get('/ping', (req, res) => {
-    res.status(200).send('pong');
+    const v = redis_1.default.get('who');
+    if (v) {
+        console.log('redis is connected');
+        res.status(200).send('pong ' + v);
+    }
 });
 app.listen(port, () => {
     console.log('Express started on port ' + port);

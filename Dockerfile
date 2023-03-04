@@ -3,4 +3,4 @@ WORKDIR /dist
 COPY . .
 RUN yarn install --production
 CMD ["node", "app.js"]
-EXPOSE 3000
+EXPOSE 8080

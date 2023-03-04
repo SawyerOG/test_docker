@@ -3,5 +3,7 @@
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["@typescript-eslint"],
 	"root": true,
-	"rules": {}
+	"rules": {
+		"@typescript-eslint/ban-tslint-comment": 1
+	}
 }

@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import path from 'path';
 const port = 8080;
 
+import redis from './config/redis';
+
 const app = express();
 app.use(cors({ origin: ['127.0.0.1'] }));
 
@@ -50,7 +52,12 @@ app.get('/', function (req: Request<object, object, object, { error: 0 | 1; thro
 });
 
 app.get('/ping', (req, res) => {
-	res.status(200).send('pong');
+	const v = redis.get<string>('who');
+	if (v) {
+		console.log('redis is connected');
+
+		res.status(200).send('pong ' + v);
+	}
 });
 
 app.listen(port, () => {

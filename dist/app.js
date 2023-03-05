@@ -54,7 +54,7 @@ app.get('/ping', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const v = yield redis_1.default.get('who');
     if (v) {
         console.log('redis is connected');
-        res.status(200).send('pong pingy wingy' + v);
+        res.status(200).send('pong pingy wingy ??' + v);
     }
 }));
 app.listen(port, () => {

@@ -7,6 +7,7 @@ class Redis {
 
 	constructor() {
 		const client = createClient();
+		client.connect();
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		//@ts-ignore
 		this.redis = client;
@@ -16,7 +17,14 @@ class Redis {
 
 		client.on('error', (err) => console.log('Redis Client Error', err));
 	}
-	private connect = async () => await this.redis.connect();
+	connect = async () => {
+		try {
+			await this.redis.connect();
+		} catch (err) {
+			console.error(err);
+			process.exit();
+		}
+	};
 
 	get = async <T>(key: string): Promise<T | undefined> => {
 		try {

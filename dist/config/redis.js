@@ -12,7 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const redis_1 = require("redis");
 class Redis {
     constructor() {
-        this.connect = () => __awaiter(this, void 0, void 0, function* () { return yield this.redis.connect(); });
+        this.connect = () => __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.redis.connect();
+            }
+            catch (err) {
+                console.error(err);
+                process.exit();
+            }
+        });
         this.get = (key) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const val = yield this.redis.get(key);
@@ -26,6 +34,7 @@ class Redis {
             }
         });
         const client = (0, redis_1.createClient)();
+        client.connect();
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         this.redis = client;

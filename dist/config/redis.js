@@ -35,7 +35,7 @@ class Redis {
                 console.error(err);
             }
         });
-        const client = (0, redis_1.createClient)({ url: 'redis:6379' });
+        const client = (0, redis_1.createClient)({ url: 'redis://redis:6379' });
         // client.connect();
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore

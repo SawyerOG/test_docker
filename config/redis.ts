@@ -6,7 +6,7 @@ class Redis {
 	private subClient: RedisClientType;
 
 	constructor() {
-		const client = createClient({ url: 'redis:6379' });
+		const client = createClient({ url: 'redis://redis:6379' });
 		// client.connect();
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		//@ts-ignore

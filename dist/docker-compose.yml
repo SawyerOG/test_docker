@@ -1,8 +1,0 @@
-services:
-  test_docker:
-    image: test_docker:latest
-    depends_on:
-      - redis
-
-  redis:
-    image: redis:latest

@@ -1,3 +1,5 @@
 /node_modules
 /dist/access.log
 /dist/tsconfig.*
+
+# "build": "tsc && cp ./package.json ./dist/package.json && cp ./Dockerfile ./dist/Dockerfile && cp ./docker-compose.yml ./dist/docker-compose.yml",

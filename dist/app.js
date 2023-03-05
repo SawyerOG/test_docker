@@ -29,7 +29,9 @@ function error(err, req, res, next) {
 }
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield redis_1.default.connect();
+        setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+            yield redis_1.default.connect();
+        }), 1000);
         const app = (0, express_1.default)();
         app.use((0, cors_1.default)({ origin: ['127.0.0.1'] }));
         // log only 4xx and 5xx responses to console
@@ -52,13 +54,14 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
             const code = error == 1 ? 404 : 200;
             res.status(code).send('hello, world!');
         });
-        app.get('/ping', (req, res) => {
-            const v = redis_1.default.get('who');
+        app.get('/ping', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+            const v = yield redis_1.default.get('who');
+            console.log(v);
             if (v) {
                 console.log('redis is connected');
                 res.status(200).send('pong ' + v);
             }
-        });
+        }));
         app.listen(port, () => {
             console.log('Express started on port ' + port);
         });

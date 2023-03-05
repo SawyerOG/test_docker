@@ -20,7 +20,9 @@ function error(err: any, req: Request, res: Response, next: NextFunction) {
 
 const run = async () => {
 	try {
-		await redis.connect();
+		setTimeout(async () => {
+			await redis.connect();
+		}, 1000);
 
 		const app = express();
 		app.use(cors({ origin: ['127.0.0.1'] }));
@@ -58,8 +60,10 @@ const run = async () => {
 			}
 		);
 
-		app.get('/ping', (req, res) => {
-			const v = redis.get<string>('who');
+		app.get('/ping', async (req, res) => {
+			const v = await redis.get<string>('who');
+			console.log(v);
+
 			if (v) {
 				console.log('redis is connected');
 

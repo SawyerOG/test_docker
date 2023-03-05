@@ -7,7 +7,7 @@ class Redis {
 
 	constructor() {
 		const client = createClient();
-		client.connect();
+		// client.connect();
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		//@ts-ignore
 		this.redis = client;

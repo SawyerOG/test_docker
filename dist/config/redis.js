@@ -34,7 +34,7 @@ class Redis {
             }
         });
         const client = (0, redis_1.createClient)();
-        client.connect();
+        // client.connect();
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         this.redis = client;

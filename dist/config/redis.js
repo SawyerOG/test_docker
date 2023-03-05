@@ -15,8 +15,10 @@ class Redis {
         this.connect = () => __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.redis.connect();
+                console.log('REDIS HAS CONNECT');
             }
             catch (err) {
+                console.log('REDIS FAILED');
                 console.error(err);
                 process.exit();
             }
@@ -41,7 +43,12 @@ class Redis {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         this.subClient = client.duplicate();
-        client.on('error', (err) => console.log('Redis Client Error', err));
+        client.on('error', (err) => {
+            console.log('Redis Client Error', err);
+            if (err.code && err.code === 'ECONNREFUSED') {
+                process.exit();
+            }
+        });
     }
 }
 exports.default = new Redis();

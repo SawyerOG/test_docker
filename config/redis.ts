@@ -15,12 +15,19 @@ class Redis {
 		//@ts-ignore
 		this.subClient = client.duplicate();
 
-		client.on('error', (err) => console.log('Redis Client Error', err));
+		client.on('error', (err) => {
+			console.log('Redis Client Error', err);
+			if (err.code && err.code === 'ECONNREFUSED') {
+				process.exit();
+			}
+		});
 	}
 	connect = async () => {
 		try {
 			await this.redis.connect();
+			console.log('REDIS HAS CONNECT');
 		} catch (err) {
+			console.log('REDIS FAILED');
 			console.error(err);
 			process.exit();
 		}

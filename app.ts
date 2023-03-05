@@ -58,7 +58,7 @@ app.get('/ping', async (req, res) => {
 	if (v) {
 		console.log('redis is connected');
 
-		res.status(200).send('pong ' + v);
+		res.status(200).send('pong pingy wingy' + v);
 	}
 });
 

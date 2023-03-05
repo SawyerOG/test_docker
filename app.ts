@@ -53,8 +53,8 @@ app.get('/', function (req: Request<object, object, object, { error: 0 | 1; thro
 	res.status(code).send('hello, world!');
 });
 
-app.get('/ping', (req, res) => {
-	const v = redis.get<string>('who');
+app.get('/ping', async (req, res) => {
+	const v = await redis.get<string>('who');
 	if (v) {
 		console.log('redis is connected');
 

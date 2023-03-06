@@ -10,7 +10,7 @@ import redis from './config/redis';
 redis.connect();
 
 const app = express();
-app.use(cors({ origin: ['127.0.0.1', 'nginx'] }));
+app.use(cors({ origin: ['127.0.0.1', '172.18.0.1'] }));
 
 // log only 4xx and 5xx responses to console
 app.use(

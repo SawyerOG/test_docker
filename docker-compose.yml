@@ -12,4 +12,4 @@ services:
   nginx:
     image: my_custom_nginx:latest
     ports:
-      80:80
+      - 80:80

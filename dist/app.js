@@ -21,7 +21,7 @@ const port = 8080;
 const redis_1 = __importDefault(require("./config/redis"));
 redis_1.default.connect();
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)({ origin: ['127.0.0.1'] }));
+app.use((0, cors_1.default)({ origin: ['127.0.0.1', 'nginx'] }));
 // log only 4xx and 5xx responses to console
 app.use((0, morgan_1.default)('dev', {
     skip: function (req, res) {

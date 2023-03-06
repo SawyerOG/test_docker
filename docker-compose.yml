@@ -3,8 +3,13 @@ services:
     image: test_docker:latest
     depends_on:
       - redis
-    ports:
-      - 8080:8080
+    # ports:
+    #   - 8080:8080
 
   redis:
     image: redis:latest
+
+  nginx:
+    image: my_custom_nginx:latest
+    ports:
+      80:80
